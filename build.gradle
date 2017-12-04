@@ -1,0 +1,42 @@
+buildscript {
+    ext {
+        kotlin_version = '1.2.0'
+        vaadin_version = "8.1.5"
+    }
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group 'com.bstsnail.vaadin'
+version '1.0'
+
+apply plugin: 'kotlin'
+apply plugin: 'war'
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    // Vaadin
+    compile "com.vaadin:vaadin-client-compiled:$vaadin_version"
+    compile "com.vaadin:vaadin-server:$vaadin_version"
+    compile "com.vaadin:vaadin-push:$vaadin_version"
+    compile "com.vaadin:vaadin-themes:$vaadin_version"
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
